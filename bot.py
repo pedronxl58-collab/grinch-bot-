@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 # Configurações Oficiais do Bot $GRINCH
 TOKEN_TELEGRAM = "8806505554:AAH1coxKkLHgXChDyaggmETslL1Tf"
-CHAT_ID_GRUPO = "@GrinchSolanaPortal"  # Ajusta se o grupo tiver outro username público
+CHAT_ID_GRUPO = "@GrinchSolanaPortal"
 
 # Data oficial de lançamento: 15 de Dezembro de 2026
 DATA_LANCAMENTO = datetime(2026, 12, 15, 0, 0, 0, tzinfo=timezone(timedelta(hours=-3)))
@@ -99,8 +99,8 @@ def main():
     app.add_handler(CommandHandler("contract", contract))
     app.add_handler(CommandHandler("links", links))
 
-    job_queue = app.job_queue
-    job_queue.run_repeating(envio_automatico_grinch, interval=21600, first=15)
+    if app.job_queue:
+        app.job_queue.run_repeating(envio_automatico_grinch, interval=21600, first=15)
 
     logger.info("🤖 Bot exclusivo do Grinch a rodar perfeitamente...")
     app.run_polling()
