@@ -8,8 +8,8 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Configurações Oficiais do Bot $GRINCH
-TOKEN_TELEGRAM = "8806505554:AAGgHL-K5MG4N3K0wuATRSG8CaN6qWJZp6Y⁠"
+# Token oficial numa única linha contínua (sem quebras)
+TOKEN_TELEGRAM = "8806505554:AAGgHL-K5MG4N3K0wuATRSG8CaN6qWJZp6Y"
 CHAT_ID_GRUPO = "@GrinchSolanaPortal"
 
 # Data oficial de lançamento: 15 de Dezembro de 2026
@@ -105,11 +105,9 @@ async def main_async():
 
     logger.info("🤖 Bot exclusivo do Grinch a rodar perfeitamente...")
     
-    # Inicia o polling de forma totalmente assíncrona
     async with app:
         await app.start()
         await app.updater.start_polling()
-        # Mantém o bot ativo perpetuamente
         await asyncio.Event().wait()
 
 if __name__ == '__main__':
