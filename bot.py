@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import random
 from datetime import datetime, timezone, timedelta
@@ -90,7 +91,7 @@ async def contract(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def links(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🌐 **X (Twitter):** @GrinchSolana \n💬 **Telegram Portal:** t.me/GrinchSolanaPortal", parse_mode="Markdown")
 
-def main():
+async def main_async():
     app = Application.builder().token(TOKEN_TELEGRAM).build()
 
     app.add_handler(CommandHandler("start", start))
@@ -103,7 +104,16 @@ def main():
         app.job_queue.run_repeating(envio_automatico_grinch, interval=21600, first=15)
 
     logger.info("🤖 Bot exclusivo do Grinch a rodar perfeitamente...")
-    app.run_polling()
+    
+    # Inicia o polling de forma totalmente assíncrona
+    async with app:
+        await app.start()
+        await app.updater.start_polling()
+        # Mantém o bot ativo perpetuamente
+        await asyncio.Event().wait()
 
 if __name__ == '__main__':
-    main()
+    try:
+        asyncio.run(main_async())
+    except (KeyboardInterrupt, SystemExit):
+        pass
