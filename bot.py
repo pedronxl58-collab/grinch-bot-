@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # Configurações Oficiais do Bot $GRINCH
-TOKEN_TELEGRAM = "8806505554:AAH1coxKkLHgXChDyaggmETslL1Tf"
+TOKEN_TELEGRAM = "8806505554:AAGgHL-K5MG4N3K0wuATRSG8CaN6qWJZp6Y⁠"
 CHAT_ID_GRUPO = "@GrinchSolanaPortal"
 
 # Data oficial de lançamento: 15 de Dezembro de 2026
