@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # Configurações Oficiais
 TOKEN_TELEGRAM = "8806505554:AAGgHL-K5MG4N3K0wuATRSG8CaN6qWJZp6Y"
 CHAT_ID_GRUPO = "@GrinchSolanaPortal"
-X_USERNAME = "GrinchCoin__"  # Username correto do teu X!
+X_USERNAME = "GrinchCoin__"
 
 DATA_LANCAMENTO = datetime(2026, 12, 15, 0, 0, 0, tzinfo=timezone(timedelta(hours=-3)))
 
@@ -30,26 +30,26 @@ async def envio_automatico_grinch(context: ContextTypes.DEFAULT_TYPE):
         (
             f"🎄 **$GRINCH STATUS & MARKETING UPDATE** 🟢\n\n"
             f"⏳ Only **{dias} days left** until the official launch on Pump.fun!\n"
-            f"• Follow our X profile: @{X_USERNAME}\n"
+            f"• Follow our X profile: [X (Twitter)](https://x.com/{X_USERNAME})\n"
             "• Social media campaigns are expanding globally.\n"
             "💬 *Join the portal and invite your friends!*\n\n"
             "-----------------------------------\n"
             f"🎄 **STATUS E MARKETING DO $GRINCH** 🟢\n\n"
             f"⏳ Faltam apenas **{dias} dias** para o lançamento oficial na Pump.fun!\n"
-            f"• Segue o nosso perfil no X: @{X_USERNAME}\n"
+            f"• Segue o nosso perfil no X: [X (Twitter)](https://x.com/{X_USERNAME})\n"
             "• As campanhas nas redes sociais estão a expandir-se globalmente.\n"
             "💬 *Junta-te ao portal e convida os teus amigos!*"
         ),
         (
             f"🎁 **$GRINCH COMMUNITY INTEL & SOCIALS** 🚀\n\n"
             f"Countdown: **{dias} days** remaining!\n"
-            f"• Check out our latest posts on X (@{X_USERNAME}) and drop a like/retweet!\n"
+            f"• Check out our latest posts on [X (Twitter)](https://x.com/{X_USERNAME}) and drop a like/retweet!\n"
             "• Get your Solana (Phantom) wallets ready for the ultimate holiday pump.\n"
             "🟢 *Let's take over Solana together!*\n\n"
             "-----------------------------------\n"
             f"🎁 **INFORMAÇÕES E REDES SOCIAIS $GRINCH** 🚀\n\n"
             f"Contagem decrescente: **{dias} dias** restantes!\n"
-            f"• Confere os nossos novos posts no X (@{X_USERNAME}) e deixa o teu like/retweet!\n"
+            f"• Confere os nossos novos posts no [X (Twitter)](https://x.com/{X_USERNAME}) e deixa o teu like/retweet!\n"
             "• Preparem as vossas carteiras Solana (Phantom) para o pump de Natal.\n"
             "🟢 *Vamos dominar a Solana juntos!*"
         )
@@ -88,14 +88,15 @@ async def news(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"📰 **Latest $GRINCH News & Updates:**\n\n"
         f"1️⃣ **Launch:** December 15th, 2026 on Pump.fun ({dias} days left).\n"
-        f"2️⃣ **Socials:** Active campaigns on X (@{X_USERNAME}).\n"
+        f"2️⃣ **Socials:** Active campaigns on [X (Twitter)](https://x.com/{X_USERNAME}).\n"
         "3️⃣ **Community:** 24/7 portal monitoring and automated updates.\n\n"
         "-----------------------------------\n"
         f"📰 **Últimas Notícias e Atualizações do $GRINCH:**\n\n"
         f"1️⃣ **Lançamento:** 15 de Dezembro de 2026 na Pump.fun (Faltam {dias} dias).\n"
-        f"2️⃣ **Redes Sociais:** Campanhas ativas no X (@{X_USERNAME}).\n"
+        f"2️⃣ **Redes Sociais:** Campanhas ativas no [X (Twitter)](https://x.com/{X_USERNAME}).\n"
         "3️⃣ **Comunidade:** Monitorização 24/7 e atualizações automáticas no portal.",
-        parse_mode="Markdown"
+        parse_mode="Markdown",
+        disable_web_page_preview=True
     )
 
 async def countdown(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -115,11 +116,12 @@ async def contract(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def links(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        f"🌐 **Official Links / Links Oficiais:**\n\n"
+        "🌐 **Official Links / Links Oficiais:**\n\n"
         f"• 🕊️ **X (Twitter):** https://x.com/{X_USERNAME}\n"
         "• 💬 **Telegram Portal:** https://t.me/GrinchSolanaPortal\n"
         "• 📍 **Pump.fun:** (Coming soon / Brevemente)",
-        parse_mode="Markdown"
+        parse_mode="Markdown",
+        disable_web_page_preview=True
     )
 
 async def main_async():
@@ -134,7 +136,7 @@ async def main_async():
     if app.job_queue:
         app.job_queue.run_repeating(envio_automatico_grinch, interval=21600, first=15)
 
-    logger.info("🤖 Bot do Grinch atualizado com X correto...")
+    logger.info("🤖 Bot do Grinch com links clicáveis do X atualizados...")
     
     async with app:
         await app.start()
